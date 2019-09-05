@@ -9,19 +9,12 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // ボタンクリック時、クリック方向にボールを移動
         if (Input.GetMouseButtonDown(0))
         {
-            //Vector2 ballWay = new Vector2(3.0f, 4.0f);
-
             Vector2 startPos = new Vector3(this.transform.position.x, this.transform.position.y);
-            Debug.Log("starPos : " + startPos);
             Vector2 endPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log("endPos : " + endPos);
-
             Vector2 dir = endPos - startPos;
-            Debug.Log("dir : " + dir);
-
-
             this.GetComponent<Rigidbody2D>().AddForce(dir * speed);
         }
     }
