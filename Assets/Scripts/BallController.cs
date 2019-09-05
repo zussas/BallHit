@@ -22,6 +22,9 @@ public class BallController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         // Debug.Log("衝突");
-        Destroy(collision.gameObject);
+        if (collision.gameObject.tag == "Block")
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }
