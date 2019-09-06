@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BlockController : MonoBehaviour
 {
+    public int count;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,18 @@ public class BlockController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(this.gameObject);
+        if (count > 1)
+        {
+            this.count -= 1;
+        }
+        else if (count == 1)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public int CountNumber()
+    {
+        return count;
     }
 }
