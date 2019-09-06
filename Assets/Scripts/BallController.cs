@@ -6,6 +6,10 @@ public class BallController : MonoBehaviour
 {
     public float speed;
 
+    Vector2 dir;
+    bool move;
+
+
     // Update is called once per frame
     void Update()
     {
@@ -14,17 +18,20 @@ public class BallController : MonoBehaviour
         {
             Vector2 startPos = new Vector3(this.transform.position.x, this.transform.position.y);
             Vector2 endPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 dir = endPos - startPos;
-            this.GetComponent<Rigidbody2D>().AddForce(dir * speed);
+            dir = (endPos - startPos).normalized;
+            move = true;
+        }
+        else
+        {
+            move = false;
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void FixedUpdate()
     {
-        // Debug.Log("衝突");
-        if (collision.gameObject.tag == "Block")
+        if (move)
         {
-            Destroy(collision.gameObject);
+            this.GetComponent<Rigidbody2D>().AddForce(dir * speed);
         }
     }
 }
