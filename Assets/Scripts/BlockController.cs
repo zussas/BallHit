@@ -21,14 +21,22 @@ public class BlockController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (randomCount> 1)
-        {
-            this.randomCount -= 1;
-        }
-        else if (randomCount == 1)
-        {
-            Destroy(this.gameObject);
-        }
+         if (randomCount > 1)
+         {
+             this.randomCount -= 1;
+         }
+         else if (randomCount == 1)
+         {
+               if (collision != null)
+               {
+                    // 自身の持つテキストを消去
+                    GameObject blockText = GameObject.Find("Text");
+                    Destroy(blockText);
+
+                    // 自身のブロックを消去
+                    Destroy(this.gameObject);
+               }
+          }
     }
 
     public int CountNumber()
