@@ -24,8 +24,9 @@ public class BlockTextController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        int count = block.GetComponent<BlockController>().CountNumber();
+        text.GetComponent<Text>().text = count.ToString();
     }
 }
