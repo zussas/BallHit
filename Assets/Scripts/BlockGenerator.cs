@@ -14,8 +14,8 @@ public class BlockGenerator : MonoBehaviour
     {
         // ブロックの生成
         block = Instantiate(blockPrefab) as GameObject;
-        int px = 2;
-        int py = 2;
+        float px = 0;
+        float py = 0;
         block.transform.position = new Vector3(px, py, 0);
 
         // テキストの位置をブロックに合わせる
