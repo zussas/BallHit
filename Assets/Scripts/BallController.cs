@@ -13,8 +13,8 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ボタンクリック時、クリック方向にボールを移動
-        if (Input.GetMouseButtonDown(0))
+        // ボタン離す時、クリック方向にボールを移動
+        if (Input.GetMouseButtonUp(0))
         {
             Vector2 startPos = new Vector3(this.transform.position.x, this.transform.position.y);
             Vector2 endPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -24,6 +24,14 @@ public class BallController : MonoBehaviour
         else
         {
             move = false;
+        }
+
+        // y座標が-4.5以下の時ストップ
+        if (this.transform.position.y < -4.5)
+        {
+            this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            this.transform.position = new Vector3(transform.position.x, -4.5f, 0);
+
         }
     }
 
